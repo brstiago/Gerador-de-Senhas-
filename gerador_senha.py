@@ -6,7 +6,6 @@ import pyperclip
 from tkinter import filedialog
 from datetime import datetime
 
-
 def gerar_senha():
     url = entrada_url.get().strip()
 
