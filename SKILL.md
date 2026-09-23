@@ -1,702 +1,443 @@
-Gerador de Senhas
+---
+name: gerador-de-senhas
+description: Use when developing, maintaining, redesigning, modernizing or extending the Gerador de Senhas project, a personal Python application for generating unique passwords based on a site or service name and maintaining a history of generated passwords.
+---
 
-1. Project Overview
+# Gerador de Senhas
 
-This project is a personal password generator developed in Python.
+## Objetivo
 
-Its purpose is to simplify the creation of unique passwords for
-different websites and services while keeping a simple record of
-generated passwords.
+Este projeto é um gerador de senhas desenvolvido em Python para facilitar a criação de senhas diferentes para sites e sistemas.
 
-The project was created as a personal software-development exercise and
-as a practical utility.
+A aplicação atual permite:
 
-The current repository contains:
+- Informar a URL ou nome de um site/serviço.
+- Gerar uma senha automaticamente.
+- Exibir a senha gerada.
+- Manter um histórico das senhas geradas.
+- Limpar o histórico manualmente.
 
-README.md
+O objetivo principal é tornar a geração de senhas rápida, simples e prática.
 
-gerador_senha.py
+---
 
-The existing application is a desktop graphical application.
+## Arquivos atuais
 
-The repository README describes the application as a "Gerador de Senhas
-Inteligente", with the objective of generating secure and unique
-passwords from a simple and efficient logic.
+O repositório possui atualmente:
 
-2. Current User Experience
-
-The current interface contains the following main concepts:
-
-URL or name of the website/service
-
-Button to generate the password
-
-Display of the generated password
-
-History of generated passwords
-
-Button to clear the password history
-
-The visible interface includes labels similar to:
-
-Gerador Automático de Senhas
-
-URL ou nome do site:
-
-Gerar Senha
-
-Senha Gerada:
-
-Histórico de Senhas Geradas:
-
-Limpar Histórico
-
-The site/service name is an important input because the application is
-intended to help generate a distinct password for each website or
-system.
-
-3. Technology
-
-The current project is implemented in:
-
-Python
-
-The main source file is:
-
-gerador_senha.py
-
-Do not assume the project uses a web framework.
-
-Do not migrate the application to React, Node.js, Flask, Django or
-another framework unless the user explicitly requests it.
-
-If the existing Python file uses a specific GUI toolkit or
-standard-library module, inspect the source before changing the
-technology.
-
-4. Main Functional Requirements
-
-The application should preserve these core capabilities:
-
-4.1 Website/service input
-
-The user enters a URL, domain, website name or service name.
-
-Examples:
-
-github.com
-
-LinkedIn
-
-Gmail
-
-Meu Sistema
-
-Sistema ERP
-
-The input is used as contextual information for the generated password
-and/or history.
-
-Do not assume that the URL itself must be used as a password seed unless
-the existing implementation explicitly does so.
-
-4.2 Password generation
-
-The application generates a password when the user clicks:
-
-Gerar Senha
-
-The generated password should be:
-
-Unique when possible
-
-Random
-
-Difficult to guess
-
-Appropriate for use on websites and systems
-
-Displayed clearly to the user
-
-Do not claim that a generated password is cryptographically secure
-unless the implementation uses a cryptographically appropriate random
-source.
-
-For security-sensitive password generation in Python, prefer the
-secrets module over random when implementing or modernizing the
-generator.
-
-5. Password Generation Rules
-
-When changing the generation algorithm, prioritize security over
-superficial complexity.
-
-A strong password generator should consider:
-
-Sufficient length
-
-Uppercase letters
-
-Lowercase letters
-
-Numbers
-
-Special characters
-
-Avoidance of predictable sequences
-
-Avoidance of repeated deterministic patterns
-
-If the project already has an established character set or password
-length, preserve it unless the user asks to change it.
-
-Do not silently change the generated-password format because existing
-users may rely on it.
-
-6. Site-Specific Passwords
-
-The project is intended to help the user maintain different passwords
-for different sites/services.
-
-The site/service identifier should therefore remain associated with the
-generated password in the history when the current implementation
-supports this.
-
-Example conceptual record:
-
-Site: GitHub
-Password: ********
-
-Do not expose passwords unnecessarily in logs, screenshots or debugging
-output.
-
-7. Password History
-
-The interface currently provides a history area for generated passwords.
-
-The history should:
-
-Show generated records clearly.
-
-Preserve the association between site/service and password when
-applicable.
-
-Be easy to read.
-
-Avoid accidental deletion.
-
-Allow the user to clear the history explicitly.
-
-The Limpar Histórico action is destructive for the local history and
-should remain an explicit user action.
-
-Do not clear the history automatically after generating a password.
-
-8. Data Persistence
-
-Before changing how the history is stored, inspect the existing
-implementation.
-
-Do not assume the history is persisted between application executions.
-
-If the current implementation stores history only in memory, preserve
-that behavior unless persistence is explicitly requested.
-
-If persistence is added, prefer a simple local storage mechanism
-appropriate for a small desktop application.
-
-Potential options include:
-
-JSON
-
-SQLite
-
-Do not introduce a database server for this application without a clear
-requirement.
-
-9. Security and Privacy
-
-This project deals with passwords and therefore must be treated as
-security-sensitive.
-
-Never:
-
-Commit real passwords to GitHub.
-
-Store test credentials in source code.
-
-Print generated passwords to console logs unnecessarily.
-
-Send passwords to external APIs.
-
-Upload passwords to cloud services without explicit user consent.
-
-Include passwords in analytics.
-
-Include passwords in error messages.
-
-Expose password history in public screenshots.
-
-If password history is persisted locally, protect it appropriately.
-
-A future secure version should consider:
-
-Local encryption
-
-OS credential/keychain storage
-
-Password visibility controls
-
-Clipboard protection
-
-Automatic history expiration
-
-Do not implement encryption incorrectly just to claim that data is
-encrypted.
-
-10. Clipboard
-
-If a future version adds a "Copy password" feature:
-
-Copy only the currently generated password.
-
-Do not copy the entire history.
-
-Provide clear visual feedback.
-
-Consider clearing the clipboard after a configurable period.
-
-Do not log clipboard contents.
-
-Clipboard functionality should be explicit and user-controlled.
-
-11. GUI Principles
-
-The current application is a simple utility.
-
-The interface should prioritize:
-
-Simplicity
-
-Speed
-
-Readability
-
-Security
-
-Clear feedback
-
-The primary workflow should remain obvious:
-
-Site / Service
-      ↓
-Generate Password
-      ↓
-Password Generated
-      ↓
-Password History
-
-Avoid unnecessary screens.
-
-Avoid excessive animations.
-
-Avoid adding complexity that does not improve the password-generation
-workflow.
-
-12. UI Modernization
-
-If redesigning the interface, preserve the existing mental model.
-
-The redesigned interface should still contain:
-
-Input
-
-Website/service identifier.
-
-Primary action
-
-Generate password.
-
-Result
-
-Clearly display the generated password.
-
-History
-
-Show previously generated records.
-
-Destructive action
-
-Clear history.
-
-A modern UI can improve:
-
-Typography
-
-Spacing
-
-Visual hierarchy
-
-Password visibility
-
-Copy interaction
-
-Responsive layout
-
-But it should not remove the core workflow.
-
-13. If Used With Lovable
-
-Lovable can be used to create a modern web interface or prototype for
-this project.
-
-When doing so:
-
-Treat the existing Python project as the source of truth for current
-behavior.
-
-Preserve the core user workflow.
-
-Do not invent functionality that does not exist.
-
-Do not assume that Python code can execute directly inside the
-browser.
-
-Do not assume that a web application can safely store passwords
-without defining a storage/security architecture.
-
-Do not send passwords to a backend unnecessarily.
-
-Prefer client-side generation for a browser-based password generator
-when appropriate.
-
-Use a cryptographically appropriate browser random source for
-security-sensitive generation.
-
-Clearly separate UI from password-generation logic.
-
-Do not migrate the existing project automatically without explicit
-approval.
-
-14. Web Version Architecture
-
-If the project is migrated to a web application, the preferred
-conceptual architecture is:
-
-User
-  ↓
-Web UI
-  ↓
-Password Generator
-  ↓
-Secure Random Source
-  ↓
-Generated Password
-  ↓
-Optional Local History
-
-For a simple password generator, a backend is not inherently required.
-
-If history is kept locally, consider browser-local storage rather than
-sending passwords to a server.
-
-If a backend is introduced, the security model must be explicitly
-defined before implementation.
-
-15. Password History in a Web Version
-
-For a web version, local history should be preferred over remote
-persistence when the feature does not require synchronization.
-
-Possible browser-side storage:
-
-localStorage for non-sensitive prototype data
-
-IndexedDB for larger structured local data
-
-However, storing plaintext passwords in browser storage creates security
-risks.
-
-For a security-focused version, consider:
-
-No persistent password history by default.
-
-Optional encrypted local vault.
-
-Explicit user unlock.
-
-Strong master-password-derived encryption.
-
-Clear-all functionality.
-
-Do not implement a fake encryption layer.
-
-16. Password Strength
-
-If a password-strength indicator is introduced, it should be based on
-transparent criteria.
-
-Possible factors:
-
-Length
-
-Character diversity
-
-Repetition
-
-Predictability
-
-Common-password detection
-
-Avoid presenting a simplistic "100% secure" claim.
-
-A strength meter is an estimate, not a guarantee of security.
-
-17. Input Validation
-
-The site/service field should accept reasonable input such as:
-
-Domain names
-
-URLs
-
-Application names
-
-System names
-
-Do not unnecessarily reject values merely because they are not valid
-URLs if the product explicitly supports names.
-
-Trim unnecessary whitespace.
-
-Handle empty input gracefully.
-
-If the input is required for generation, provide clear feedback instead
-of silently generating a password.
-
-18. Error Handling
-
-Expected situations include:
-
-Empty site/service input.
-
-Password generation failure.
-
-Invalid configuration.
-
-History storage failure.
-
-Local storage unavailable.
-
-Clipboard access denied.
-
-Errors should:
-
-Be understandable.
-
-Not expose sensitive information.
-
-Not reveal generated passwords.
-
-Allow the user to recover.
-
-19. Code Organization
-
-The current repository is intentionally small.
-
-Do not create unnecessary architecture.
-
-For a small Python application, a reasonable future structure could be:
-
+```text
 Gerador-de-Senhas/
-│
 ├── gerador_senha.py
-├── password_generator.py
-├── history_manager.py
 ├── README.md
-└── tests/
+└── SKILL.md
+```
 
-Only split files when the code has grown enough to justify it.
+O arquivo principal da aplicação é:
 
-The password-generation algorithm should ideally be independent from the
-GUI so it can be tested separately.
+```text
+gerador_senha.py
+```
 
-20. Testing
+Antes de alterar qualquer comportamento, o agente deve analisar o código existente.
 
-When modifying password generation, test:
+O código atual é a fonte de verdade sobre a implementação.
 
-Basic generation
+---
 
-Password is generated.
+## Tecnologia
 
-Password is not empty.
+A aplicação atual é desenvolvida em:
 
-Password length is correct.
+- Python
+- Interface gráfica desktop
 
-Character requirements
+Não assumir React, Node.js, Flask, Django ou outra tecnologia web.
 
-When configured:
+Não migrar o projeto para outra tecnologia sem solicitação explícita do usuário.
 
-Uppercase characters are supported.
+---
 
-Lowercase characters are supported.
+## Fluxo principal
 
-Numbers are supported.
+O fluxo esperado da aplicação é:
 
-Special characters are supported.
+```text
+Nome ou URL do site
+        ↓
+   Gerar Senha
+        ↓
+   Senha Gerada
+        ↓
+ Histórico de Senhas
+```
 
-Randomness
+A interface deve continuar simples e objetiva.
 
-Consecutive generations should normally differ.
+---
 
-The generator should not create deterministic predictable sequences.
+## Entrada do usuário
 
-Input
+O usuário pode informar:
 
-Empty site/service is handled.
+- URL.
+- Domínio.
+- Nome de site.
+- Nome de sistema.
+- Nome de serviço.
 
-Whitespace is handled.
+Exemplos:
 
-Long names are handled.
+```text
+github.com
+LinkedIn
+Gmail
+Sistema ERP
+Meu Sistema
+```
 
-Special characters in site names are handled.
+Não exigir que a entrada seja uma URL válida se o projeto permitir nomes de serviços.
 
-History
+Tratar entrada vazia de forma clara.
 
-Generated records appear.
+Remover espaços desnecessários quando apropriado.
 
-Multiple sites can be represented.
+---
 
-Clear history works explicitly.
+## Geração de senha
 
-Clearing history does not break future generation.
+Ao clicar em:
 
-21. Security Testing
+```text
+Gerar Senha
+```
 
-Before calling the application secure, verify:
+a aplicação deve gerar uma nova senha.
 
-Passwords are generated with an appropriate random source.
+A senha deve priorizar:
 
-No plaintext credentials are embedded in source code.
+- comprimento adequado;
+- variedade de caracteres;
+- aleatoriedade;
+- ausência de padrões previsíveis.
 
-Passwords are not logged.
+Para novas implementações de geração de senha em Python, preferir o módulo:
 
-Passwords are not sent externally.
+```python
+secrets
+```
 
-Persistent history is understood and protected.
+em vez de:
 
-Clipboard behavior is controlled.
+```python
+random
+```
 
-Error messages do not expose secrets.
+quando o objetivo for segurança criptográfica.
 
-Do not use the phrase "secure password generator" as a technical
-guarantee unless the implementation supports that claim.
+Não afirmar que uma senha é "100% segura".
 
-22. Change Management
+Não afirmar que o gerador é criptograficamente seguro sem verificar a implementação.
 
-For any significant feature, document:
+---
 
-Problem
+## Histórico
 
-What user problem is being solved?
+A interface possui:
 
-Current behavior
+```text
+Histórico de Senhas Geradas
+```
 
-What does the application do today?
+O histórico deve manter a associação entre o site/serviço e a senha quando essa informação fizer parte da implementação atual.
 
-New behavior
+A ação:
 
-What changes?
+```text
+Limpar Histórico
+```
 
-Files affected
+deve continuar sendo explícita.
 
-Which files are modified?
+Não apagar o histórico automaticamente após gerar uma nova senha.
 
-Security impact
+Antes de alterar o armazenamento do histórico, verificar como o código atual funciona.
 
-Does the change affect password generation, storage, clipboard or
-privacy?
+Não assumir que o histórico é persistido entre execuções.
 
-Validation
+---
 
-How was the feature tested?
+## Segurança
 
-23. Do Not Rewrite Working Functionality
+Este projeto trabalha com senhas e deve ser tratado como sensível.
 
-This is an existing personal project.
+Nunca:
 
-When modifying it:
+- colocar senhas reais no código;
+- colocar credenciais reais no GitHub;
+- registrar senhas em logs;
+- enviar senhas para APIs externas sem solicitação explícita;
+- expor senhas em mensagens de erro;
+- expor senhas em screenshots públicos;
+- criar telemetria que capture senhas.
 
-Inspect the current implementation first.
+Se o histórico passar a ser persistente, avaliar cuidadosamente o risco de armazenar senhas em texto puro.
 
-Preserve working behavior.
+Não implementar uma falsa camada de criptografia apenas para afirmar que os dados estão protegidos.
 
-Avoid unrelated refactoring.
+---
 
-Avoid changing the password-generation algorithm without
-understanding it.
+## Clipboard
 
-Avoid introducing dependencies without reason.
+Se for adicionada uma funcionalidade de copiar senha:
 
-Avoid replacing the GUI toolkit without explicit approval.
+- copiar somente a senha atualmente selecionada/gerada;
+- não copiar o histórico inteiro;
+- informar visualmente que a cópia foi realizada;
+- considerar limpeza automática do clipboard após determinado período;
+- nunca registrar o conteúdo copiado em logs.
 
-If a modernization is requested, propose the migration before performing
-it.
+---
 
-24. Important Rule for AI Agents
+## Interface
 
-Never infer security properties from the project name or README alone.
+A interface deve priorizar:
 
-For example:
+1. Simplicidade.
+2. Rapidez.
+3. Clareza.
+4. Segurança.
+5. Facilidade de uso.
 
-Do not assume:
+A tela principal deve deixar evidente:
 
-Cryptographic randomness
+- onde informar o site;
+- como gerar a senha;
+- qual senha foi gerada;
+- onde consultar o histórico;
+- como limpar o histórico.
 
-Encryption
+Evitar excesso de elementos visuais.
 
-Secure password storage
+---
 
-Secure password history
+## Modernização
 
-Secure clipboard handling
+Se o usuário solicitar uma modernização visual:
 
-These properties must be verified in the implementation.
+- preservar o fluxo atual;
+- preservar a lógica de geração;
+- preservar o histórico;
+- melhorar hierarquia visual;
+- melhorar espaçamento;
+- melhorar tipografia;
+- melhorar feedback das ações.
 
-The source code is the authority.
+Não reescrever toda a aplicação sem necessidade.
 
-25. Definition of Done
+---
 
-A change is complete when:
+## Uso com Lovable
 
-The requested feature works.
+Se este projeto for levado para o Lovable, não simplesmente converter o Python para React sem analisar a arquitetura.
 
-Existing password generation still works.
+O Lovable deve:
 
-Existing history behavior still works.
+1. Entender o funcionamento atual.
+2. Preservar as regras de negócio.
+3. Preservar o fluxo de geração.
+4. Preservar o conceito de histórico.
+5. Separar interface e lógica de geração.
+6. Evitar enviar senhas para um servidor sem necessidade.
+7. Considerar geração local no navegador quando apropriado.
+8. Usar uma fonte de aleatoriedade adequada para geração segura.
+9. Não inventar funcionalidades inexistentes.
 
-No password is accidentally exposed.
+Uma possível arquitetura web seria:
 
-No unnecessary dependency was introduced.
+```text
+Usuário
+   ↓
+Interface Web
+   ↓
+Gerador de Senhas
+   ↓
+Fonte aleatória segura
+   ↓
+Senha gerada
+   ↓
+Histórico local opcional
+```
 
-The application remains simple to use.
+Para uma versão web simples, não assumir que um backend é necessário.
 
-Security implications of the change have been considered.
+---
 
-The implementation has been tested.
+## Persistência
 
-26. Guiding Principle
+Antes de implementar persistência, verificar a necessidade.
 
-The project should remain a simple and useful password-generation
-utility.
+Para uma aplicação simples, possíveis alternativas são:
 
-The primary objective is:
+- JSON local;
+- SQLite;
+- armazenamento local do navegador em uma versão web.
 
-Generate unique passwords quickly for different websites and services
-while minimizing unnecessary exposure of sensitive password data.
+Para senhas reais, considerar que armazenar histórico em texto puro aumenta o risco de exposição.
 
-When improving the project, favor:
+Uma versão mais segura pode utilizar:
 
-Security → Simplicity → Usability → Visual polish
+- histórico desativado por padrão;
+- armazenamento local protegido;
+- criptografia apropriada;
+- desbloqueio por senha mestre;
+- expiração do histórico.
 
-and avoid adding complexity without a concrete user benefit.
+Não implementar criptografia sem uma implementação tecnicamente adequada.
+
+---
+
+## Validação
+
+Tratar corretamente:
+
+- entrada vazia;
+- nomes longos;
+- espaços;
+- caracteres especiais;
+- múltiplas gerações;
+- limpeza do histórico;
+- falhas de armazenamento.
+
+Nunca exibir uma exceção técnica diretamente para o usuário final quando uma mensagem amigável for suficiente.
+
+---
+
+## Testes
+
+Ao modificar o gerador, verificar:
+
+### Geração
+
+- uma senha é criada;
+- a senha não é vazia;
+- o tamanho atende à configuração;
+- gerações consecutivas normalmente produzem resultados diferentes.
+
+### Caracteres
+
+Quando configurado:
+
+- letras maiúsculas;
+- letras minúsculas;
+- números;
+- caracteres especiais.
+
+### Entrada
+
+- campo vazio;
+- nome de site;
+- URL;
+- caracteres especiais;
+- nomes longos.
+
+### Histórico
+
+- registro da senha;
+- associação com o site;
+- múltiplos registros;
+- limpeza explícita;
+- geração continua funcionando depois de limpar.
+
+---
+
+## Regras para alteração do código
+
+Antes de implementar uma mudança:
+
+1. Ler o código existente.
+2. Identificar onde a funcionalidade está implementada.
+3. Fazer a menor alteração necessária.
+4. Preservar funcionalidades existentes.
+5. Evitar refatorações não relacionadas.
+6. Evitar novas dependências sem necessidade.
+7. Testar o comportamento afetado.
+
+Não substituir uma implementação funcional apenas porque existe uma abordagem tecnicamente diferente.
+
+---
+
+## Segurança durante desenvolvimento
+
+Nunca assumir propriedades de segurança apenas pelo nome do projeto ou pelo README.
+
+Antes de afirmar que o projeto possui:
+
+- aleatoriedade criptográfica;
+- criptografia;
+- armazenamento seguro;
+- proteção de clipboard;
+- proteção do histórico;
+
+verificar o código.
+
+A implementação é a fonte de verdade.
+
+---
+
+## Quando o requisito for ambíguo
+
+Se uma solicitação puder alterar significativamente a segurança ou a arquitetura, preservar o comportamento atual e esclarecer a mudança necessária.
+
+Exemplos:
+
+- armazenar histórico permanentemente;
+- sincronizar senhas com a nuvem;
+- criar conta de usuário;
+- adicionar backend;
+- adicionar senha mestre;
+- criptografar histórico;
+- transformar a aplicação em SaaS.
+
+Não implementar automaticamente uma dessas mudanças.
+
+---
+
+## Princípios para agentes de IA
+
+Ao trabalhar neste projeto:
+
+- Não inventar funcionalidades.
+- Não remover funcionalidades existentes.
+- Não expor senhas.
+- Não adicionar dependências desnecessárias.
+- Não migrar tecnologia sem autorização.
+- Não afirmar segurança sem verificar a implementação.
+- Não armazenar senhas remotamente sem necessidade.
+- Priorizar mudanças pequenas e testáveis.
+
+---
+
+## Definition of Done
+
+Uma alteração está concluída quando:
+
+- a funcionalidade solicitada funciona;
+- a geração existente continua funcionando;
+- o histórico continua funcionando;
+- nenhuma senha é exposta acidentalmente;
+- não foram adicionadas dependências desnecessárias;
+- a interface continua simples;
+- os impactos de segurança foram considerados;
+- o comportamento foi testado.
+
+---
+
+## Princípio principal
+
+O projeto deve continuar sendo uma ferramenta simples, rápida e útil para geração de senhas.
+
+A prioridade é:
+
+**Segurança → Simplicidade → Usabilidade → Aparência**
+
+Evitar complexidade que não gere benefício concreto para o usuário.
